@@ -13,7 +13,7 @@ import java.util.List;
 public class CarsController {
 
 	@GetMapping(value = "/cars")
-	public String printWelcome(ModelMap model) {
+	public String printCars(ModelMap model) {
 		List<Car> cars = new CarService().listCars();
 		model.addAttribute("cars", cars);
 		return "cars";
