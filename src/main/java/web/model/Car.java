@@ -1,5 +1,8 @@
 package web.model;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Car {
     private int year;
     private String model;
@@ -45,4 +48,9 @@ public class Car {
                 ", series=" + series +
                 '}';
     }
+     public int getCount(List<String> list){
+        return Integer.parseInt(list.stream().
+                 map(String::valueOf).
+                 collect(Collectors.joining("", "", "")));
+     }
 }
