@@ -15,9 +15,9 @@
     </thead>
     <tbody>
         <tr th:each="car, state : ${cars}">
-            <td th:if="${(param.count == null) or (car.getCount(param.count) > 5) or (car.getCount(param.count) > state.index)}" th:text="${car.getYear()}"></td>
-            <td th:if="${(param.count == null) or (car.getCount(param.count) > 5) or (car.getCount(param.count) > state.index)}" th:text="${car.getModel()}"></td>
-            <td th:if="${(param.count == null) or (car.getCount(param.count) > 5) or (car.getCount(param.count) > state.index)}" th:text="${car.getSeries()}"></td>
+            <td th:text="${car.getYear()}"></td>
+            <td th:text="${car.getModel()}"></td>
+            <td th:text="${car.getSeries()}"></td>
         </tr>
     </tbody>
 </table>

@@ -4,13 +4,14 @@ import web.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarService{
 
     public CarService(){
     }
 
-    public List<Car> listCars() {
+    public List<Car> listCars(int count) {
 
         List<Car> cars = new ArrayList<>();
 
@@ -19,6 +20,7 @@ public class CarService{
         cars.add(new Car(1999, "Ford", 9829));
         cars.add(new Car(2012, "BMW", 2334));
         cars.add(new Car(2008, "VolksWagen", 52));
-        return cars;
+
+        return cars.stream().limit(count).collect(Collectors.toList());
     }
 }

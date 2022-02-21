@@ -48,9 +48,4 @@ public class Car {
                 ", series=" + series +
                 '}';
     }
-     public int getCount(List<String> list){
-        return Integer.parseInt(list.stream().
-                 map(String::valueOf).
-                 collect(Collectors.joining("", "", "")));
-     }
 }
