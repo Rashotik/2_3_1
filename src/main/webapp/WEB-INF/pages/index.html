@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
+
+<head/>
+
+<body>
+<ul>
+    <li><a th:href="@{/}">Home</a></li>
+    <li><a th:href="${#mvc.url('UC#addUserForm').build()}">Create new user</a></li>
+    <li><a th:href="${#mvc.url('UC#showAllUsers').build()}">User list</a></li>
+</ul>
+</body>
+</html>

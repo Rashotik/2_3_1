@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
+
+<head/>
+
+<body>
+
+    <ul>
+        <li><a th:href="@{/}">Home</a></li>
+        <li><a th:href="${#mvc.url('UC#addUserForm').build()}">Create new user</a></li>
+        <li><a th:href="${#mvc.url('UC#showAllUsers').build()}">User list</a></li>
+    </ul>
+
+    <p th:remove="${#httpServletRequest.requestURI.contains('/new') == false} ? all">Create new user</p>
+    <p th:remove="${#httpServletRequest.requestURI.contains('/edit') == false} ? all">Edit user</p>
+
+<div>
+    <form th:method="POST" th:action="@{/users}" th:object="${user}">
+        <input type="hidden" th:field="*{id}" th:value="*{getId()}">
+        <label for="name">Name</label>
+        <input type="text" id="name" th:field="*{firstName}" th:value="*{getFirstName()}" placeholder="Enter user name" required>
+        <label for="last_name">Last name</label>
+        <input type="text" id="last_name" th:field="*{lastName}" th:value="*{getLastName()}" placeholder="Enter last name">
+
+        <label for="email">Email</label>
+        <input type="text" id="email" th:field="*{email}" th:value="*{getEmail()}" placeholder="Enter email" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" th:field="*{password}" th:value="*{getPassword()}" placeholder="Enter password" required>
+
+        <button type="submit" th:text="*{getId()} ? 'Save' : 'Create'"/>
+        <a th:href="${#mvc.url('UC#showAllUsers').build()}">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

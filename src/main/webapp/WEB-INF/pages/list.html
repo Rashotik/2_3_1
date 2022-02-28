@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
+
+<head/>
+
+<body>
+
+<ul>
+    <li><a th:href="@{/}">Home</a></li>
+    <li><a th:href="${#mvc.url('UC#addUserForm').build()}">Create new user</a></li>
+    <li><a th:classappend="${#httpServletRequest.requestURI.contains('users')} ? 'active'" th:href="${#mvc.url('UC#showAllUsers').build()}">User list</a></li>
+</ul>
+            <p>User list</p>
+
+        <div>
+            <a type="button" th:href="${#mvc.url('UC#addUserForm').build()}">Create new user</a>
+        </div>
+
+<table th:remove="${users.size() == 0} ? all" border="2px">
+    <thead>
+        <td>Name</td>
+        <td>Last name</td>
+        <td>E-mail</td>
+        <td>Actions</td>
+    </thead>
+    <tbody th:each="user,rowStat : ${users}">
+        <tr>
+            <td th:text="${user.getFirstName()}"/>
+            <td th:text="${user.getLastName()}"/>
+            <td th:text="${user.getEmail()}"/>
+            <td>
+                <a style="text-decoration: none;" type="button" th:href="@{/users/edit(id=${user.getId()})}">Edit</a>
+                <a style="text-decoration: none;" type="button" th:href="@{/users/delete(id=${user.getId()})}">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div th:remove="${users.size() != 0} ? all">
+        Users not found. Please insert.
+</div>
+
+</body>
+</html>
